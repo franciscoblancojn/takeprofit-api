@@ -13,9 +13,7 @@ const index = async (req, res) => {
             },
         })
         if(user.length !==0){
-            throw {
-                error : "Use Register"
-            }
+            throw new Error("Use Register")
         }
 
         const result = await db.post({
