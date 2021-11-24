@@ -1,12 +1,12 @@
 require("module-alias/register");
 const router = require("express").Router();
 const fmiddlewares = require("fmiddlewares");
-const {} = require("@app/middlewares/_index");
+const {apikey} = require("@app/middlewares/_index");
 const controller = require("@app/controllers/acounts/_index");
 
-router.get("/", [], controller.get);
-router.post("/", [], controller.post);
-router.put("/", [], controller.put);
-router.delete("/", [], controller.delete);
+router.get("/", [apikey], controller.get);
+router.post("/", [apikey], controller.post);
+router.put("/", [apikey], controller.put);
+router.delete("/", [apikey], controller.delete);
 
 module.exports = router;
