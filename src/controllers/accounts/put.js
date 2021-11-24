@@ -17,7 +17,7 @@ const index = async (req, res) => {
 
         return res.send({
             type: "ok",
-            respond: result,
+            respond: "User Update Ok",
         });
     } catch (error) {
         return res.status(error.code || 500).send({
