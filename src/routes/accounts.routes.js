@@ -1,55 +1,14 @@
 require("module-alias/register");
 const router = require("express").Router();
 const fmiddlewares = require("fmiddlewares");
-const { apikey } = require("@app/middlewares/_index");
+const { apikey,accounts } = require("@app/middlewares/_index");
 const controller = require("@app/controllers/accounts/_index");
 
 router.get(
     "/",
     [
         apikey,
-        fmiddlewares.validateItem(
-            {
-                exactItems: true,
-                name: {
-                    isUndefined: true,
-                    type: "string",
-                },
-                last_name: {
-                    isUndefined: true,
-                    type: "string",
-                },
-                email: {
-                    isUndefined: true,
-                    type: "email",
-                },
-                phone: {
-                    isUndefined: true,
-                    type: "string",
-                },
-                card: {
-                    isUndefined: true,
-                    type: "string",
-                },
-                pais: {
-                    isUndefined: true,
-                    type: "string",
-                },
-                provincia: {
-                    isUndefined: true,
-                    type: "string",
-                },
-                ciudad: {
-                    isUndefined: true,
-                    type: "string",
-                },
-                calle: {
-                    isUndefined: true,
-                    type: "string",
-                },
-            },
-            "query"
-        ),
+        accounts.get
     ],
     controller.get
 );
