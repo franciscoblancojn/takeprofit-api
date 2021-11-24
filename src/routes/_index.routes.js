@@ -2,6 +2,6 @@ require('module-alias/register')
 
 const router = require('express').Router()
 
-//router.use('/auth', require('@app/routes/auth.routes'))
+router.use('/acount', require('@app/routes/acount.routes'))
 
 module.exports = router
