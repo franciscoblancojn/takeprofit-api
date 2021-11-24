@@ -4,7 +4,7 @@ const db = require("@app/db");
 
 const index = async (req, res) => {
     try {
-        const result = db.get({
+        const result = await db.get({
             table:"accounts",
             query:req.query
         })
