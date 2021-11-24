@@ -19,6 +19,10 @@ module.exports = fmiddlewares.validateItem(
             isUndefined: true,
             type: "string",
         },
+        date: {
+            isUndefined: true,
+            type: "number",
+        },
         card: {
             isUndefined: true,
             type: "string",

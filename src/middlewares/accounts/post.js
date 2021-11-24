@@ -3,14 +3,6 @@ const fmiddlewares = require("fmiddlewares");
 module.exports = fmiddlewares.validateItem(
     {
         exactItems: true,
-        name: {
-            isUndefined: true,
-            type: "string",
-        },
-        last_name: {
-            isUndefined: true,
-            type: "string",
-        },
         email: {
             type: "email",
         },
@@ -30,30 +22,6 @@ module.exports = fmiddlewares.validateItem(
                     msj:"must contain capital letters"
                 },
             ]
-        },
-        phone: {
-            isUndefined: true,
-            type: "string",
-        },
-        card: {
-            isUndefined: true,
-            type: "string",
-        },
-        pais: {
-            isUndefined: true,
-            type: "string",
-        },
-        provincia: {
-            isUndefined: true,
-            type: "string",
-        },
-        ciudad: {
-            isUndefined: true,
-            type: "string",
-        },
-        calle: {
-            isUndefined: true,
-            type: "string",
         },
     },
 );

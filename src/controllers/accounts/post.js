@@ -4,9 +4,29 @@ const db = require("@app/db");
 
 const index = async (req, res) => {
     try {
+        const body = req.body
+
+        const user = await db.get({
+            table:"accounts",
+            query:{
+                email:body.email,
+            },
+        })
+        if(user.length !==0){
+            throw {
+                error : "Use Register"
+            }
+        }
+
+        const result = await db.post({
+            table:"accounts",
+            data:{
+                ...body
+            }
+        })
         return res.send({
             type: "ok",
-            respond: {},
+            respond: result,
         });
     } catch (error) {
         return res.status(error.code || 500).send({
