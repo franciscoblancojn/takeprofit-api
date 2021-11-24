@@ -12,7 +12,6 @@ const index = async (req, res) => {
             type: "ok",
             respond: result.map((e)=>{
                 delete e.password
-                console.log(e);
                 return e
             }),
         });
