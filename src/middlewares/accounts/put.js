@@ -3,12 +3,11 @@ const fmiddlewares = require("fmiddlewares");
 module.exports = [
     fmiddlewares.validateItem(
         {
-            exactItems: true,
             _id: {
                 type: "text",
             },
         },
-        "query"
+        "jwt__"
     ),
     fmiddlewares.validateItem({
         exactItems: true,
