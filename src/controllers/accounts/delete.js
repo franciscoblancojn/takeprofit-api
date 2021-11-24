@@ -4,9 +4,16 @@ const db = require("@app/db");
 
 const index = async (req, res) => {
     try {
+        const _id = req.jwt__._id
+        const result = await db.delete({
+            table:"accounts",
+            where:{
+                _id
+            }
+        })
         return res.send({
             type: "ok",
-            respond: {},
+            respond: "User Delete",
         });
     } catch (error) {
         return res.status(error.code || 500).send({
