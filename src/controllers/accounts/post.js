@@ -24,7 +24,7 @@ const index = async (req, res) => {
         });
         return res.send({
             type: "ok",
-            respond: result,
+            respond: "User create ok",
         });
     } catch (error) {
         console.log(error);
