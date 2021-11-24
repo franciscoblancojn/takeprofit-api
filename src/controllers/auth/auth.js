@@ -26,7 +26,7 @@ const index = async (req, res) => {
             throw new Error("Email o Password invalid");
         }
         delete user.password
-        const token = jwt.sign(user, env.JWT)
+        const token = jwt.sign(user, env.JWT,{ expiresIn: '2h' })
 
         return res.send({
             type: "ok",
