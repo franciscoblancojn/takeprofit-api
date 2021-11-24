@@ -6,11 +6,15 @@ const index = async (req, res) => {
     try {
         const result = await db.get({
             table:"accounts",
-            query:req.query
+            query:req.query,
         })
         return res.send({
             type: "ok",
-            respond: result,
+            respond: result.map((e)=>{
+                delete e.password
+                console.log(e);
+                return e
+            }),
         });
     } catch (error) {
         return res.status(error.code || 500).send({
