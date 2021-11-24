@@ -1,4 +1,5 @@
 require("module-alias/register");
+const {} = require("@app/functions/_index");
 const db = require("@app/db");
 
 const index = async (req, res) => {
