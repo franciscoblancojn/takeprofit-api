@@ -1,18 +1,39 @@
 require("module-alias/register");
-const {} = require("@app/functions/_index");
+const { converteFields } = require("@app/functions/_index");
 const db = require("@app/db");
 
 const index = async (req, res) => {
     try {
-        
-        const user_id = req.jwt__._id
+        const query = converteFields(
+            [
+                {
+                    id: "monto",
+                    converte: parseFloat,
+                },
+                {
+                    id: "periodo",
+                    converte: parseFloat,
+                },
+                {
+                    id: "capital",
+                    converte: parseFloat,
+                },
+                {
+                    id: "date",
+                    converte: parseFloat,
+                },
+            ],
+            req.query
+        );
+
+        const user_id = req.jwt__._id;
         const result = await db.get({
-            table:"deposits",
-            query:{
-                ...req.query,
-                user_id
+            table: "deposits",
+            query: {
+                ...query,
+                user_id,
             },
-        })
+        });
         return res.send({
             type: "ok",
             respond: result,
