@@ -4,6 +4,7 @@ const db = require("@app/db");
 
 const index = async (req, res) => {
     try {
+        
         const user_id = req.jwt__._id
         const result = await db.get({
             table:"deposits",
