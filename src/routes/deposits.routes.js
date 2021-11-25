@@ -1,6 +1,5 @@
 require("module-alias/register");
 const router = require("express").Router();
-const fmiddlewares = require("fmiddlewares");
 const {apikey,jwt,deposits} = require("@app/middlewares/_index");
 const controller = require("@app/controllers/deposits/_index");
 
