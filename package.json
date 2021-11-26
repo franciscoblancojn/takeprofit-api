@@ -13,6 +13,7 @@
     "test": "nodemon src/test.js",
     "lint": "npx standard src/",
     "format": "npx standard --fix src/"
+    
   },
   "repository": {
     "type": "git",
