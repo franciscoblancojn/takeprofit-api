@@ -4,7 +4,6 @@
   "description": "api of takeprofit",
   "main": "/src/server.js",
   "scripts": {
-    "build": "echo 'build'",
     "initpm2": "pm2 start src/server.js",
     "updatepm2": "pm2 restart src/server.js && pm2 save",
     "update": "git pull",
