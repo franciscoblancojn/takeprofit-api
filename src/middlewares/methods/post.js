@@ -11,7 +11,7 @@ module.exports = fmiddlewares.validateItem({
     account: {
         type: "string",
     },
-    tipeAccount: {
+    typeAccount: {
         type: "string",
     },
 });
