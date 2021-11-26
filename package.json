@@ -9,6 +9,7 @@
     "update": "git pull",
     "pull": "npm run update && npm run updatepm2",
     "dev": "nodemon src/server.js",
+    "start": "node src/server.js",
     "test": "nodemon src/test.js",
     "lint": "npx standard src/",
     "format": "npx standard --fix src/"
