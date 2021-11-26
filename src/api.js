@@ -4,7 +4,10 @@ const env = dotenv.parsed
 const express = require('express')
 const app = express()
 
-const port = 3001
+console.log(dotenv);
+console.log(env);
+
+const port = env.PORT || 3001
 const path = require('path')
 const bodyParser = require('body-parser')
 const cors = require('cors')
