@@ -1,16 +1,15 @@
 {
-    "env": {
-        "MONGODB_URI": "@mongodb-ur"
-    },
-    "headers": [
+    "version": 2,
+    "builds": [
         {
-            "source": "/(.*)",
-            "headers": [
-                {
-                    "key": "Access-Control-Allow-Origin",
-                    "value": "*"
-                }
-            ]
+            "src": "./src/testapi.js",
+            "use": "@vercel/node"
+        }
+    ],
+    "routes": [
+        {
+            "src": "/(.*)",
+            "dest": "/"
         }
     ]
 }
