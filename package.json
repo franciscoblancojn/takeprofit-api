@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "api of takeprofit",
   "main": "/src/server.js",
+  "engines": {
+    "node": "14.x"
+  },
   "scripts": {
     "initpm2": "pm2 start src/server.js",
     "updatepm2": "pm2 restart src/server.js && pm2 save",
@@ -13,7 +16,7 @@
     "test": "nodemon src/test.js",
     "lint": "npx standard src/",
     "format": "npx standard --fix src/"
-    
+
   },
   "repository": {
     "type": "git",
