@@ -14,7 +14,7 @@ app.use(cors({
 
 const morgan = require('morgan')
 
-// const routes = require('@app/routes/_index.routes')
+const routes = require('@app/routes/_index.routes')
 
 app.set('port', port)
 app.use(morgan('dev'))
@@ -32,11 +32,11 @@ app.use((req, res, next) => {
 
 const mode = env.MODE === 'DEV' ? '/dev' : ''
 
-// app.use(mode + '/api/v1', routes)
+app.use(mode + '/api/v1', routes)
 /**
  * use folder page for rutes not enpoints
  */
-app.use('/api/v1/public',express.static(path.join(__dirname, 'pages')))
+app.use("/public",express.static(path.join(__dirname, 'pages')))
 app.use('*', (req, res) => {
   res.status(404).send({ status: 404, msg: "this endpoint doesn't exist", type: 'error', code: 404 })
 })

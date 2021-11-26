@@ -3,10 +3,8 @@
   "version": "1.0.0",
   "description": "api of takeprofit",
   "main": "/src/server.js",
-  "engines": {
-    "node": "14.x"
-  },
   "scripts": {
+    "build": "echo 'build'",
     "initpm2": "pm2 start src/server.js",
     "updatepm2": "pm2 restart src/server.js && pm2 save",
     "update": "git pull",
