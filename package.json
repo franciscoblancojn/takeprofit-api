@@ -2,7 +2,7 @@
   "name": "take-profit-api",
   "version": "1.0.0",
   "description": "api of takeprofit",
-  "main": "/src/api.js",
+  "main": "/src/server.js",
   "scripts": {
     "initpm2": "pm2 start src/server.js",
     "updatepm2": "pm2 restart src/server.js && pm2 save",
