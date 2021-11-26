@@ -13,7 +13,8 @@
     "start": "node src/server.js",
     "test": "nodemon src/test.js",
     "lint": "npx standard src/",
-    "format": "npx standard --fix src/"
+    "format": "npx standard --fix src/",
+    "push":"git push && git push github"
 
   },
   "repository": {
