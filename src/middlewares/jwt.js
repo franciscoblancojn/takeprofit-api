@@ -1,7 +1,6 @@
 require("module-alias/register");
 const jwt = require("jsonwebtoken");
-const dotenv = require("dotenv").config();
-const env = dotenv.parsed;
+const env = require("@app/env")
 
 const validateJWT = async (req, res, next) => {
     try {

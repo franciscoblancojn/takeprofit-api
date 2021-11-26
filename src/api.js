@@ -1,11 +1,7 @@
 require('module-alias/register')
-const dotenv = require('dotenv').config()
-const env = dotenv.parsed
+const env = require("@app/env")
 const express = require('express')
 const app = express()
-
-console.log(dotenv);
-console.log(env);
 
 const port = env.PORT || 3001
 const path = require('path')
