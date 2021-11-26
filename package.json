@@ -8,7 +8,7 @@
     "updatepm2": "pm2 restart src/server.js && pm2 save",
     "update": "git pull",
     "pull": "npm run update && npm run updatepm2",
-    "dev": "nodemon src/server.js",
+    "dev": "MODE=DEV nodemon src/server.js",
     "start": "node src/server.js",
     "test": "nodemon src/test.js",
     "lint": "npx standard src/",
