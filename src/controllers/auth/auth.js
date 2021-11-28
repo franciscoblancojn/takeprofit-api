@@ -7,6 +7,7 @@ const db = require("@app/db");
 const index = async (req, res) => {
     try {
         const body = req.body;
+        return res.send({body})
         const result = await db.get({
             table: "accounts",
             query: {
