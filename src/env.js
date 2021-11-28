@@ -1,4 +1,6 @@
+if(process.env.MODE==="DEV"){
+    const dotenv = require("dotenv").config();
+}
 
-console.log(process.env);
 
 module.exports = process.env;
