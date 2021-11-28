@@ -1,7 +1,4 @@
-const dotenv = require("dotenv").config();
-const env = dotenv.parsed;
-console.log(dotenv);
 
-console.log(env);
+console.log(process.env);
 
 module.exports = process.env;
