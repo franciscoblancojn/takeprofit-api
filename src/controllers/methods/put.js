@@ -15,6 +15,9 @@ const index = async (req, res) => {
                 $set:body
             }
         })
+        if(result.type==="error"){
+            throw result
+        }
         return res.send({
             type: "ok",
             respond: result,

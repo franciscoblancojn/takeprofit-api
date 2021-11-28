@@ -12,6 +12,9 @@ const index = async (req, res) => {
                 email: body.email,
             },
         });
+        if(user.type==="error"){
+            throw user
+        }
         if (user.length !== 0) {
             throw new Error("Use Register");
         }

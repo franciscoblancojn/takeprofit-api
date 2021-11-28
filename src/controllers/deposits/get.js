@@ -34,6 +34,9 @@ const index = async (req, res) => {
                 user_id,
             },
         });
+        if(result.type==="error"){
+            throw result
+        }
         return res.send({
             type: "ok",
             respond: result,

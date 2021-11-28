@@ -14,6 +14,9 @@ const index = async (req, res) => {
                 date:(new Date()).getTime()
             },
         });
+        if(result.type==="error"){
+            throw result
+        }
         return res.send({
             type: "ok",
             respond: result,

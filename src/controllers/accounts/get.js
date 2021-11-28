@@ -8,6 +8,9 @@ const index = async (req, res) => {
             table:"accounts",
             query:req.query,
         })
+        if(result.type==="error"){
+            throw result
+        }
         return res.send({
             type: "ok",
             respond: result.map((e)=>{

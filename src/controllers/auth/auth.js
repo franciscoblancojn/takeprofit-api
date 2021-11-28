@@ -13,7 +13,9 @@ const index = async (req, res) => {
                 email: body.email,
             },
         });
-        return res.send({result})
+        if(result.type==="error"){
+            throw result
+        }
         if (result.length === 0) {
             throw new Error("Email o Password invalid");
         }

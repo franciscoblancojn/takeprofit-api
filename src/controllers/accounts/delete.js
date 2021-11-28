@@ -11,6 +11,9 @@ const index = async (req, res) => {
                 _id
             }
         })
+        if(result.type==="error"){
+            throw result
+        }
         return res.send({
             type: "ok",
             respond: "User Delete",
