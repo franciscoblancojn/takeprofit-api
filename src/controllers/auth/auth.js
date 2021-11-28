@@ -7,13 +7,13 @@ const db = require("@app/db");
 const index = async (req, res) => {
     try {
         const body = req.body;
-        return res.send({body})
         const result = await db.get({
             table: "accounts",
             query: {
                 email: body.email,
             },
         });
+        return res.send({result})
         if (result.length === 0) {
             throw new Error("Email o Password invalid");
         }
