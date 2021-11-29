@@ -1,4 +1,6 @@
 require("module-alias/register");
+const jwt = require("jsonwebtoken");
+const env = require("@app/env")
 const { encryptPassword } = require("@app/functions/_index");
 const db = require("@app/db");
 
@@ -25,9 +27,11 @@ const index = async (req, res) => {
                 ...body,
             },
         });
+        // const token = jwt.sign(user, env.JWT,{ expiresIn: '2h' })
         return res.send({
             type: "ok",
             respond: "User create ok",
+            result
         });
     } catch (error) {
         console.log(error);
