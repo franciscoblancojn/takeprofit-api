@@ -11,4 +11,22 @@ module.exports = fmiddlewares.validateItem({
     monto: {
         type: "number",
     },
+    account: {
+        type: "object",
+        items: {
+            exactItems: true,
+            bank: {
+                type: "string",
+            },
+            name: {
+                type: "string",
+            },
+            account: {
+                type: "string",
+            },
+            type: {
+                type: "string",
+            },
+        },
+    },
 });
