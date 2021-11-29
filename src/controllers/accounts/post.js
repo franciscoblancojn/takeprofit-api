@@ -1,6 +1,6 @@
 require("module-alias/register");
 const jwt = require("jsonwebtoken");
-const env = require("@app/env")
+const env = require("@app/env");
 const { encryptPassword } = require("@app/functions/_index");
 const db = require("@app/db");
 
@@ -14,8 +14,8 @@ const index = async (req, res) => {
                 email: body.email,
             },
         });
-        if(user.type==="error"){
-            throw user
+        if (user.type === "error") {
+            throw user;
         }
         if (user.length !== 0) {
             throw new Error("Use Register");
@@ -27,11 +27,12 @@ const index = async (req, res) => {
                 ...body,
             },
         });
-        const newUser = result.result[0]
-        const token = jwt.sign(newUser, env.JWT,{ expiresIn: '2h' })
+        const newUser = result.ops[0];
+        delete newUser.password;
+        const token = jwt.sign(newUser, env.JWT, { expiresIn: "2h" });
         return res.send({
             type: "ok",
-            respond: {token}, 
+            respond: { token },
         });
     } catch (error) {
         console.log(error);
