@@ -1,7 +1,6 @@
 require("module-alias/register");
 const bcrypt = require('bcrypt')
-const dotenv = require("dotenv").config();
-const env = dotenv.parsed;
+const env = require("@app/env")
 /**
  * encryptPassword
  * @description encripta password
