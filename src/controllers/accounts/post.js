@@ -27,11 +27,11 @@ const index = async (req, res) => {
                 ...body,
             },
         });
-        // const token = jwt.sign(user, env.JWT,{ expiresIn: '2h' })
+        const newUser = result.result[0]
+        const token = jwt.sign(newUser, env.JWT,{ expiresIn: '2h' })
         return res.send({
             type: "ok",
-            respond: "User create ok",
-            result
+            respond: {token}, 
         });
     } catch (error) {
         console.log(error);
