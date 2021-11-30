@@ -1,4 +1,6 @@
 require("module-alias/register");
+const jwt = require("jsonwebtoken");
+const env = require("@app/env")
 const {} = require("@app/functions/_index");
 const db = require("@app/db");
 
