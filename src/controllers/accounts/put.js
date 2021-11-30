@@ -17,10 +17,19 @@ const index = async (req, res) => {
         if(result.type==="error"){
             throw result
         }
+        const respond = await db.get({
+            table:"accounts",
+            query:{_id},
+        })
+        const user = respond[0]
+        delete user.password
+        const token = jwt.sign(user, env.JWT,{ expiresIn: '2h' })
 
         return res.send({
             type: "ok",
-            respond: "User Update Ok",
+            token,
+            msj:"User Update Ok",
+            respond: result,
         });
     } catch (error) {
         return res.status(error.code || 500).send({
