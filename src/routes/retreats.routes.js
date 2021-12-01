@@ -6,7 +6,7 @@ const controller = require("@app/controllers/retreats/_index");
 router.get("/", [apikey, jwt, retreats.get], controller.get);
 router.get(
     "/admin",
-    [apikey, jwt, role("admin"), deposits.get],
+    [apikey, jwt, role("admin"), retreats.get],
     controller.get
 );
 router.post("/", [apikey, jwt, retreats.post], controller.post);
