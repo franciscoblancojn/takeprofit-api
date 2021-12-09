@@ -5,15 +5,23 @@ const db = require("@app/db");
 const index = async (req, res) => {
     try {
         const user_id = req.jwt__._id;
+        var query = {
+            ...req.query,
+            user_id,
+        };
+
+        if (req.jwt__.role === "admin") {
+            query = {
+                ...req.query,
+            };
+        }
+
         const result = await db.get({
             table: "methods",
-            query: {
-                ...req.query,
-                user_id,
-            },
+            query,
         });
-        if(result.type==="error"){
-            throw result
+        if (result.type === "error") {
+            throw result;
         }
         return res.send({
             type: "ok",
