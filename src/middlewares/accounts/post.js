@@ -23,5 +23,18 @@ module.exports = fmiddlewares.validateItem(
                 },
             ]
         },
+        capital: {
+            type: "number",
+            min:1
+        },
+        porRetiro: {
+            type: "number",
+            min:1,
+            max:100
+        },
+        cooldown: {
+            type: "number",
+            min:1
+        },
     },
 );
