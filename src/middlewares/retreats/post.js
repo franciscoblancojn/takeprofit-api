@@ -4,12 +4,6 @@ const db = require("@app/db");
 module.exports = [
     fmiddlewares.validateItem({
         exactItems: true,
-        periodo: {
-            type: "number",
-        },
-        capital: {
-            type: "number",
-        },
         monto: {
             type: "number",
         },
@@ -22,7 +16,7 @@ module.exports = [
             const user_id = req.jwt__._id;
             const _id = req.body.methods;
             const result = await db.get({
-                table: "retreats",
+                table: "methods",
                 query: {
                     _id,
                     user_id,
