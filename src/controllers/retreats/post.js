@@ -4,18 +4,18 @@ const db = require("@app/db");
 
 const index = async (req, res) => {
     try {
-        const body = req.body
-        const user_id = req.jwt__._id
+        const body = req.body;
+        const user_id = req.jwt__._id;
         const result = await db.post({
             table: "retreats",
             data: {
                 ...body,
                 user_id,
-                date:(new Date()).getTime()
+                date: new Date().getTime(),
             },
         });
-        if(result.type==="error"){
-            throw result
+        if (result.type === "error") {
+            throw result;
         }
         return res.send({
             type: "ok",

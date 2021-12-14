@@ -28,10 +28,8 @@ module.exports = [
                     user_id,
                 },
             });
-            if (!result) {
-                throw {
-                    error: "methods invalid",
-                };
+            if (result.type === "error") {
+                throw result;
             }
             if (result.length == 0) {
                 throw {
