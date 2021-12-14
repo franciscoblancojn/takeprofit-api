@@ -12,21 +12,6 @@ module.exports = fmiddlewares.validateItem({
         type: "number",
     },
     account: {
-        type: "object",
-        items: {
-            exactItems: true,
-            bank: {
-                type: "string",
-            },
-            name: {
-                type: "string",
-            },
-            account: {
-                type: "string",
-            },
-            type: {
-                type: "string",
-            },
-        },
+        type: "string",
     },
 });
