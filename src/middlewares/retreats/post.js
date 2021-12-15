@@ -58,6 +58,11 @@ module.exports = [
                 };
             }
             const user = result[0];
+            const montoMax = user.capital * user.porRetiro / 100
+            const capitalActual = user.capitalActual || user.capital
+
+            const montoUse = Math.min(monto,montoMax,capitalActual)
+
         } catch (error) {
             return res.status(400).send({
                 type: "error",
