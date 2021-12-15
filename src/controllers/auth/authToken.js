@@ -5,11 +5,11 @@ const db = require("@app/db");
 
 const index = async (req, res) => {
     try {
-        const body = req.body;
+        const _id = req.jwt__._id;
         const result = await db.get({
             table: "accounts",
             query: {
-                email: body.email,
+                _id,
             },
         });
         if (result.type === "error") {
