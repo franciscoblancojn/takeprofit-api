@@ -70,7 +70,7 @@ module.exports = [
 
             req.body.monto = montoUse;
 
-            const newCapital = capital + (montoMax + montoUse);
+            const newCapital = capital + (montoMax - montoUse);
 
             if(newCapital != capital){
                 const resultA = await db.put({
