@@ -7,7 +7,7 @@ const whitelist = env.WHITELIST.split(",,,");
 
 const io = require("socket.io")(server, {
     origin: function (origin, callback) {
-        if (whitelist.include(origin)) {
+        if (whitelist.includes(origin)) {
             callback(null, true);
         } else {
             callback(new Error("Not allowed by CORS"));
