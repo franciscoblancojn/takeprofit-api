@@ -1,9 +1,16 @@
-const app = require('./api')
+const app = require('@app/api')
+const env = require("@app/env")
 const server = require('http').createServer(app)
 
+const whitelist = env.WHITELIST.split(",,,")
+
 const io = require('socket.io')(server, {
-  cors: {
-    origin: '*'
+  cors: function (origin, callback) {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true)
+    } else {
+      callback(new Error('Not allowed by CORS'))
+    }
   }
 })
 
