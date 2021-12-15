@@ -59,31 +59,32 @@ module.exports = [
             }
             const user = result[0];
             const montoMax = (user.capital * user.porRetiro) / 100;
-            const capitalActual =
-                user.capitalActual == null ? user.capital : user.capitalActual;
-            if (capitalActual === 0) {
+            const capital = user.capital
+            if (capital === 0) {
                 throw {
                     error: "No hay capital",
                 };
             }
 
-            const montoUse = Math.min(monto, montoMax, capitalActual);
+            const montoUse = Math.min(monto, montoMax);
 
             req.body.monto = montoUse;
 
-            const newCapitalActual = capitalActual - montoUse;
+            const newCapital = capital + (montoMax + montoUse);
 
-            const resultA = await db.put({
-                table: "accounts",
-                where: { _id },
-                data: {
-                    $set: {
-                        capitalActual: newCapitalActual,
+            if(newCapital != capital){
+                const resultA = await db.put({
+                    table: "accounts",
+                    where: { _id },
+                    data: {
+                        $set: {
+                            capital: newCapital,
+                        },
                     },
-                },
-            });
-            if (resultA.type === "error") {
-                throw result;
+                });
+                if (resultA.type === "error") {
+                    throw result;
+                }
             }
         } catch (error) {
             return res.status(400).send({
