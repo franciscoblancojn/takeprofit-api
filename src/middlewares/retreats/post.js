@@ -39,4 +39,32 @@ module.exports = [
         }
         next();
     },
+    async (req, res, next) => {
+        try {
+            const monto = req.body.monto;
+            const _id = req.jwt__._id;
+            const result = await db.get({
+                table: "accounts",
+                query: {
+                    _id,
+                },
+            });
+            if (result.type === "error") {
+                throw result;
+            }
+            if (result.length == 0) {
+                throw {
+                    error: "user invalid",
+                };
+            }
+            const user = result[0];
+        } catch (error) {
+            return res.status(400).send({
+                type: "error",
+                error,
+                msj: `${error}`,
+            });
+        }
+        next();
+    },
 ];
