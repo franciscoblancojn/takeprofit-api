@@ -61,15 +61,17 @@ module.exports = [
             const dataUser = {};
             const user = result[0];
             const now = new Date().getTime();
-            const laftRetreatsDate =
-                user.laftRetreatsDate || new Date().getTime();
+            const laftRetreatsDate = user.laftRetreatsDate || now;
             const datePermitedStart =
                 laftRetreatsDate +
                 parseFloat(env.DIASRETIROS || 40) * 24 * 60 * 60 * 1000;
             const datePermitedEnd =
                 datePermitedStart +
                 parseFloat(env.DIASPERMITED || 40) * 24 * 60 * 60 * 1000;
-            if (now < datePermitedStart || now > datePermitedEnd) {
+            if (
+                (now < datePermitedStart || now > datePermitedEnd) &&
+                user.laftRetreatsDate == null
+            ) {
                 throw {
                     error: "Date not permited",
                 };
