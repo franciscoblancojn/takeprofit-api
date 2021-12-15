@@ -1,4 +1,5 @@
 const fmiddlewares = require("fmiddlewares");
+const env = require("@app/env");
 const db = require("@app/db");
 
 module.exports = [
@@ -58,8 +59,23 @@ module.exports = [
                 };
             }
             const user = result[0];
+            const now = new Date().getTime();
+            const laftRetreatsDate =
+                user.laftRetreatsDate || new Date().getTime();
+            const datePermitedStart =
+                laftRetreatsDate +
+                parseFloat(env.DIASRETIROS || 40) * 24 * 60 * 60 * 1000;
+            const datePermitedEnd =
+                datePermitedStart +
+                parseFloat(env.DIASPERMITED || 40) * 24 * 60 * 60 * 1000;
+            if (now < datePermitedStart || now > datePermitedEnd) {
+                throw {
+                    error: "Date not permited",
+                };
+            }
+
             const montoMax = (user.capital * user.porRetiro) / 100;
-            const capital = user.capital
+            const capital = user.capital;
             if (capital === 0) {
                 throw {
                     error: "No hay capital",
@@ -72,7 +88,7 @@ module.exports = [
 
             const newCapital = capital + (montoMax - montoUse);
 
-            if(newCapital != capital){
+            if (newCapital != capital) {
                 const resultA = await db.put({
                     table: "accounts",
                     where: { _id },
