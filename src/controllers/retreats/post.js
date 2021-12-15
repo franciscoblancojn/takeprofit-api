@@ -6,17 +6,20 @@ const index = async (req, res) => {
     try {
         const body = req.body;
         const user_id = req.jwt__._id;
+        const data = {
+            ...body,
+            user_id,
+            date: new Date().getTime(),
+        };
         const result = await db.post({
             table: "retreats",
-            data: {
-                ...body,
-                user_id,
-                date: new Date().getTime(),
-            },
+            data,
         });
         if (result.type === "error") {
             throw result;
         }
+        const io = req.app.get("socketio");
+        io.sockets.emit("[POST] /retreats", data);
         return res.send({
             type: "ok",
             respond: result,
