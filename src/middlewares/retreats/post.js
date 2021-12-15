@@ -72,9 +72,7 @@ module.exports = [
                 (now < datePermitedStart || now > datePermitedEnd) &&
                 user.laftRetreatsDate != null
             ) {
-                throw {
-                    error: "Date not permited",
-                };
+                throw new Error("Date not permited");
             }
             dataUser.laftRetreatsDate = now;
 
