@@ -70,7 +70,7 @@ module.exports = [
                 parseFloat(env.DIASPERMITED || 40) * 24 * 60 * 60 * 1000;
             if (
                 (now < datePermitedStart || now > datePermitedEnd) &&
-                user.laftRetreatsDate == null
+                user.laftRetreatsDate != null
             ) {
                 throw {
                     error: "Date not permited",
