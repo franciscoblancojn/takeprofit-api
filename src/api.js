@@ -9,17 +9,6 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 
 const whitelist = env.WHITELIST.split(",,,");
-app.use(
-    cors({
-        origin: function (origin, callback) {
-            if (whitelist.includes(origin)) {
-                callback(null, true);
-            } else {
-                callback(new Error("Not allowed by CORS"));
-            }
-        },
-    })
-);
 
 const morgan = require("morgan");
 
@@ -45,6 +34,17 @@ app.use((req, res, next) => {
     next();
 });
 
+app.use(
+    cors({
+        origin: function (origin, callback) {
+            if (whitelist.includes(origin)) {
+                callback(null, true);
+            } else {
+                callback(new Error("Not allowed by CORS"));
+            }
+        },
+    })
+);
 const mode = env.MODE === "DEV" ? "/dev" : "";
 
 app.use(mode + "/api/v1", routes);
