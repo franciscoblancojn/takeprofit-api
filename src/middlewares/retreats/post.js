@@ -58,11 +58,33 @@ module.exports = [
                 };
             }
             const user = result[0];
-            const montoMax = user.capital * user.porRetiro / 100
-            const capitalActual = user.capitalActual || user.capital
+            const montoMax = (user.capital * user.porRetiro) / 100;
+            const capitalActual =
+                user.capitalActual == null ? user.capital : user.capitalActual;
+            if (capitalActual === 0) {
+                throw {
+                    error: "No hay capital",
+                };
+            }
 
-            const montoUse = Math.min(monto,montoMax,capitalActual)
+            const montoUse = Math.min(monto, montoMax, capitalActual);
 
+            req.body.monto = montoUse;
+
+            const newCapitalActual = capitalActual - montoUse;
+
+            const resultA = await db.put({
+                table: "accounts",
+                where: { _id },
+                data: {
+                    $set: {
+                        capitalActual: newCapitalActual,
+                    },
+                },
+            });
+            if (resultA.type === "error") {
+                throw result;
+            }
         } catch (error) {
             return res.status(400).send({
                 type: "error",
