@@ -58,6 +58,7 @@ module.exports = [
                     error: "user invalid",
                 };
             }
+            const dataUser = {};
             const user = result[0];
             const now = new Date().getTime();
             const laftRetreatsDate =
@@ -73,6 +74,7 @@ module.exports = [
                     error: "Date not permited",
                 };
             }
+            dataUser.laftRetreatsDate = now;
 
             const montoMax = (user.capital * user.porRetiro) / 100;
             const capital = user.capital;
@@ -89,18 +91,19 @@ module.exports = [
             const newCapital = capital + (montoMax - montoUse);
 
             if (newCapital != capital) {
-                const resultA = await db.put({
-                    table: "accounts",
-                    where: { _id },
-                    data: {
-                        $set: {
-                            capital: newCapital,
-                        },
+                dataUser.capital = newCapital;
+            }
+            const resultA = await db.put({
+                table: "accounts",
+                where: { _id },
+                data: {
+                    $set: {
+                        ...dataUser,
                     },
-                });
-                if (resultA.type === "error") {
-                    throw result;
-                }
+                },
+            });
+            if (resultA.type === "error") {
+                throw result;
             }
         } catch (error) {
             return res.status(400).send({
