@@ -63,8 +63,7 @@ module.exports = [
             const now = new Date().getTime();
             const laftRetreatsDate = user.laftRetreatsDate || now;
             const datePermitedStart =
-                laftRetreatsDate +
-                parseFloat(env.DIASRETIROS || 40) * 24 * 60 * 60 * 1000;
+                laftRetreatsDate + user.cooldown * 24 * 60 * 60 * 1000;
             const datePermitedEnd =
                 datePermitedStart +
                 parseFloat(env.DIASPERMITED || 40) * 24 * 60 * 60 * 1000;
