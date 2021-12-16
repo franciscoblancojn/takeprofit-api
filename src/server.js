@@ -6,13 +6,16 @@ const server = require("http").createServer(app);
 const whitelist = env.WHITELIST.split(",,,");
 
 const io = require("socket.io")(server, {
-    origin: function (origin, callback) {
-        if (whitelist.includes(origin)) {
-            callback(null, true);
-        } else {
-            callback(new Error("Not allowed by CORS"));
-        }
+    cors: {
+        origin: "*",
     },
+    // origin: function (origin, callback) {
+    //     if (whitelist.includes(origin) || !origin) {
+    //         callback(null, true);
+    //     } else {
+    //         callback(new Error("Not allowed by CORS"));
+    //     }
+    // },
 });
 
 app.set("socketio", io);
